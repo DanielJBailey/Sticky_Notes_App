@@ -14,6 +14,13 @@ $white: #fff;
     text-decoration: none;
 }
 
+::selection {
+    background: lightcyan; /* WebKit/Blink Browsers */
+  }
+  ::-moz-selection {
+    background: lightcyan; /* Gecko Browsers */
+  }
+
 a {
     text-decoration: none;
     color: $dark;
@@ -86,9 +93,11 @@ body {
             background-color: #01a3a4;
             display: block;
         }
-    }
+    } // Styles for main sitcky note list
     .sticky-note-container {
         width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
         height: 100%;
         padding: 2em;
         display: flex;
@@ -97,50 +106,74 @@ body {
         justify-content: center;
         flex-wrap: wrap;
         .sticky-note {
-            height: 200px;
-            ///background-color: $yellow;
+            height: 200px; ///background-color: $yellow;
             width: 200px;
             font-family: 'Kalam', cursive;
-            cursor: pointer;
             position: relative;
             border-radius: 2px;
-            transition: 0.3s;
-            margin-right: 1.5em;
-            margin-bottom: 1.5em;
-            box-shadow: 5px 5px 20px rgba(0,0,0,0.8);
-
+            transition: 0.5s;
+            margin: 1em;
+            animation: fade 1s linear;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.8);
             .sticky-note-body {
                 height: 200px;
                 width: 200px;
                 padding: 1em;
+                font-size: 16px;
             }
             &:hover {
                 transform: scale(1.1);
             }
-
-            &:hover > .delete-button > .icon {
+            &:hover>.delete-button>.icon {
                 display: block;
                 transition: 0.3s linear;
             }
-
+            &:hover>.edit-button>.edit {
+                display: block;
+                transition: 0.3s linear;
+            }
             .delete-button {
                 position: absolute;
                 bottom: 0;
                 right: 0;
-
                 .icon {
                     display: none;
+                    cursor: pointer;
+                    color: rgba(0, 0, 0, 0.6);
                     transition: 0.3s linear;
                     padding: 10px;
                     animation: fade 0.5s ease-in-out;
                     &:hover {
-                        color: $white;
+                        color: $dark;
+                    }
+                }
+            }
+            .edit-button {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                .edit {
+                    display: none;
+                    cursor: pointer;
+                    color: rgba(0, 0, 0, 0.4);
+                    transition: 0.3s linear;
+                    padding: 10px;
+                    animation: fade 0.5s ease-in-out;
+                    &:hover {
+                        color: $dark;
                     }
                 }
             }
         }
-    }
 
+
+        @media (max-width: 420px) {
+            .sticky-note {
+                width: 100%;
+                margin: 10px;
+            }
+        }
+    } // Styles for Creating New Note Page
     .form-container {
         display: flex;
         flex-direction: column;
@@ -149,7 +182,6 @@ body {
         height: 100%;
         min-height: 500px;
         width: 100%;
-
         .new-sticky-form {
             display: flex;
             flex-direction: column;
@@ -161,17 +193,15 @@ body {
             outline: none;
             font-size: 22px;
             font-family: 'Kalam', cursive;
-            box-shadow: 5px 5px 20px rgba(0,0,0,0.8);
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.8);
             padding: 1em;
         }
-
         .button-container {
             margin-top: 2em;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-
             .submit {
                 align-self: center;
                 color: white;
@@ -191,8 +221,6 @@ body {
         }
     }
 }
-
-
 
 @keyframes fade {
     0% {

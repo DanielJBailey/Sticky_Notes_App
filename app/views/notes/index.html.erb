@@ -7,17 +7,17 @@
 
     
     <% @notes.each do |note| %>
-        <%= link_to note_path(note), class: "sticky-note-link", :show => 'go' do %>
-            <div class="sticky-note" style="background-color: <%= @color_array.sample %>">
-                <p class="sticky-note-body">
-                    <%= note.body %>
-                </p>
-                <%= link_to note_path(note.id), class: "delete-button", method: :delete do %>
-                <i class="fas fa-trash-alt icon"></i>
-                <% end %>
-            </div>
-        <% end %>
-       
+        <div class="sticky-note" style="background-color: <%= @color_array.sample %>">
+            <p class="sticky-note-body">
+                <%= note.body %>
+            </p>
+            <%= link_to edit_note_path(note.id), class: "edit-button", :edit => 'go' do %>
+            <i class="fas fa-edit edit"></i>
+            <% end %>
+            <%= link_to note_path(note.id), class: "delete-button", method: :delete do %>
+            <i class="fas fa-trash-alt icon"></i>
+            <% end %>
+        </div>
     <% end %>
 
 </div>
