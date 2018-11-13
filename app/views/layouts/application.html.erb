@@ -14,7 +14,7 @@
   <body>
     <div class="nav-bar">
       <ul>
-        <li>Notes</li>
+        <%= link_to notes_path, :index => 'go' do %><li>View Notes</li><% end %>
         <li><i class="fas fa-plus icon"></i></li>
       </ul>
     </div>
