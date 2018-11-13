@@ -1,0 +1,23 @@
+
+<h1 class="page-title">My Sticky Notes</h1>
+
+<div class="sticky-note-container">
+    
+ 
+    <% @notes.each do |note| %>
+ 
+        <%= link_to note_path(note), :show => 'go' do %>
+        <div class="sticky-note">
+            <p class="sticky-note-body">
+                <%= note.body %>
+            </p>
+            <div class="folded-corner"></div>
+            <div class="folded-corner-triangle"></div>
+        </div>
+        <% end %>
+       
+    <% end %>
+    
+
+</div>
+

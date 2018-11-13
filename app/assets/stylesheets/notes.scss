@@ -1,0 +1,150 @@
+// Place all the styles related to the notes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+@import url('https://fonts.googleapis.com/css?family=Kalam');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+a {
+    color: #333;
+}
+
+
+body {
+    background-color: rgb(233, 233, 233);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 100px 0;
+    height: 100%;
+    min-height: 100vh;
+    width: 100%;
+    font-family: 'Noto Sans', sans-serif;
+    position: relative;
+
+    .nav-bar {
+        position: absolute;
+        top: 0;
+        height: 50px;
+        background-color: #333;
+        width: 100%;
+        box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        
+        ul {
+            list-style-type: none;
+
+            li {
+                display: inline-block;
+                color: #fff;
+                margin-right: 25px;
+                font-size: 18px;
+                cursor: pointer;
+                &:hover {
+                    color: #feca57;
+                }
+            }
+        }
+    }
+
+    .page-title {
+        padding: 25px;
+        font-size: 40px;
+        color: #333;
+
+        &:before {
+            content: '';
+            width: 100px;
+            height: 20px;
+            background-color: #01a3a4;
+            display: block; 
+        }
+    }
+
+    .sticky-note-container {
+        width: 100%;
+        height: 100%;
+        margin: 2em 0;
+        padding: 2em;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        .sticky-note {
+            height: 200px;
+            background-color: #feca57;
+            width: 200px;
+            font-family: 'Kalam', cursive;
+            padding: 1em;
+            margin: 20px;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 2px 2px 20px rgba(0,0,0,0.2);
+
+            &:hover {
+            box-shadow: none;
+            }
+
+            .sticky-note-body a {
+                text-decoration: none;
+            }
+
+            &:hover > .folded-corner {
+                display: block;
+            }
+
+
+            &:hover > .folded-corner-triangle {
+                display: block;
+            }
+
+
+            .folded-corner {
+                position: absolute;
+                display: none;
+                bottom: 0;
+                right: 0;
+                transition: 0.3s;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 0 0px 30px 30px;
+                border-color: transparent transparent rgb(233, 233, 233) transparent;
+            }
+
+            .folded-corner-triangle {
+                position: absolute;
+                bottom: 0;
+                display: none;
+                transition: 0.3s;
+                right: 0;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 30px 30px 0 0;
+                border-color: #886b2d transparent transparent transparent;
+            }
+        }
+    }
+}
+
+// .card .card__corner .card__corner-triangle {
+//     position: absolute;
+//     width: 0;
+//     height: 0;
+//     border-style: solid;
+//     border-width: 0 2em 2em 0;
+//     border-color: transparent #f1f2f2 transparent transparent;
+//     }
