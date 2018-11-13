@@ -1,10 +1,12 @@
 // Place all the styles related to the notes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
 @import url('https://fonts.googleapis.com/css?family=Kalam');
-
+$yellow: #feff9c;
+$dark_yellow: #886b2d;
+$dark: #333;
+$white: #fff;
 * {
     margin: 0;
     padding: 0;
@@ -13,12 +15,12 @@
 }
 
 a {
-    color: #333;
+    text-decoration: none;
+    color: $dark;
 }
 
-
 body {
-    background-color: rgb(233, 233, 233);
+    background-color: $dark;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -29,135 +31,174 @@ body {
     width: 100%;
     font-family: 'Noto Sans', sans-serif;
     position: relative;
-
     .nav-bar {
         position: absolute;
         top: 0;
         height: auto;
-        background-color: #333;
+        background-color: $dark;
         width: 100%;
-        box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: flex-end;
-        
         ul {
             list-style-type: none;
             display: flex;
             flex-direction: row;
-
-            li {
-                display: inline-block;
-                color: #fff;
-                font-size: 18px;
-                padding: 20px;
-                cursor: pointer;
-                border-bottom: 2px solid transparent;
-                transition: 0.2s;
+            a {
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
-                &:nth-child(2) {
-                    width: 155px;
-                }
-                &:hover {
-                    color: #feca57;
-                    border-bottom: 2px solid #feca57;
-                    background-color: rgb(63, 63, 63);
+                height: 100%;
+                width: 100%;
+                li {
+                    display: inline-block;
+                    color: #fff;
+                    height: 75px;
+                    width: 150px;
+                    font-size: 18px;
+                    cursor: pointer;
+                    border-bottom: 2px solid transparent;
+                    transition: 0.2s;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    &:hover {
+                        color: $yellow;
+                        border-bottom: 2px solid $yellow;
+                        background-color: rgb(63, 63, 63);
+                    }
                 }
             }
         }
     }
-
     .page-title {
         padding: 25px;
         font-size: 40px;
-        color: #333;
-
+        color: $white;
         &:before {
             content: '';
             width: 100px;
             height: 20px;
             background-color: #01a3a4;
-            display: block; 
+            display: block;
         }
     }
-
     .sticky-note-container {
         width: 100%;
         height: 100%;
         padding: 2em;
         display: flex;
         flex-direction: row;
-        align-items: flex-start;
-        justify-content: flex-start;
+        align-items: center;
+        justify-content: center;
         flex-wrap: wrap;
-
         .sticky-note {
             height: 200px;
-            background-color: #feca57;
+            ///background-color: $yellow;
             width: 200px;
             font-family: 'Kalam', cursive;
-            padding: 1em;
-            margin: 20px;
             cursor: pointer;
             position: relative;
-            box-shadow: 2px 2px 20px rgba(0,0,0,0.2);
+            border-radius: 2px;
+            transition: 0.3s;
+            margin-right: 1.5em;
+            margin-bottom: 1.5em;
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.8);
 
+            .sticky-note-body {
+                height: 200px;
+                width: 200px;
+                padding: 1em;
+            }
             &:hover {
-            box-shadow: none;
+                transform: scale(1.1);
             }
 
-            .sticky-note-body a {
-                text-decoration: none;
-            }
-
-            &:hover > .folded-corner {
+            &:hover > .delete-button > .icon {
                 display: block;
+                transition: 0.3s linear;
             }
 
-
-            &:hover > .folded-corner-triangle {
-                display: block;
-            }
-
-
-            .folded-corner {
-                position: absolute;
-                display: none;
-                bottom: 0;
-                right: 0;
-                transition: 0.3s;
-                width: 0;
-                height: 0;
-                border-style: solid;
-                border-width: 0 0px 30px 30px;
-                border-color: transparent transparent rgb(233, 233, 233) transparent;
-            }
-
-            .folded-corner-triangle {
+            .delete-button {
                 position: absolute;
                 bottom: 0;
-                display: none;
-                transition: 0.3s;
                 right: 0;
-                width: 0;
-                height: 0;
-                border-style: solid;
-                border-width: 30px 30px 0 0;
-                border-color: #886b2d transparent transparent transparent;
+
+                .icon {
+                    display: none;
+                    transition: 0.3s linear;
+                    padding: 10px;
+                    animation: fade 0.5s ease-in-out;
+                    &:hover {
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        min-height: 500px;
+        width: 100%;
+
+        .new-sticky-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            width: 300px;
+            background-color: $yellow;
+            outline: none;
+            font-size: 22px;
+            font-family: 'Kalam', cursive;
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.8);
+            padding: 1em;
+        }
+
+        .button-container {
+            margin-top: 2em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .submit {
+                align-self: center;
+                color: white;
+                border: 2px solid black;
+                background-color: $dark;
+                outline: none;
+                padding: 20px 30px;
+                font-size: 18px;
+                margin: 0 auto;
+                transition: 0.3s linear;
+                cursor: pointer;
+                &:hover {
+                    color: $yellow;
+                    border-color: $yellow;
+                }
             }
         }
     }
 }
 
-// .card .card__corner .card__corner-triangle {
-//     position: absolute;
-//     width: 0;
-//     height: 0;
-//     border-style: solid;
-//     border-width: 0 2em 2em 0;
-//     border-color: transparent #f1f2f2 transparent transparent;
-//     }
+
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

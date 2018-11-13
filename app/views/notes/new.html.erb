@@ -1,2 +1,11 @@
-<h1>Notes#new</h1>
-<p>Find me in app/views/notes/new.html.erb</p>
+<h1 class="page-title">New Sticky Note</h1>
+<% @color_array = ['#ff7eb9', '#ff65a3','#7afcff','#feff9c','#fff740']%>
+
+<div class="form-container">
+    <%= form_for @note do |f| %>
+        <%= f.text_area :body, class: "new-sticky-form",:maxlength => 95%>
+        <div class="button-container">
+        <%= f.submit class: "submit"%>
+        </div>
+    <% end %>
+</div>
