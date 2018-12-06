@@ -14,7 +14,7 @@
             <%= link_to edit_note_path(note.id), class: "edit-button", :edit => 'go' do %>
             <i class="fas fa-edit edit"></i>
             <% end %>
-            <%= link_to note_path(note.id), class: "delete-button", method: :delete do %>
+            <%= link_to note_path(note.id), class: "delete-button", method: :destroy do %>
             <i class="fas fa-trash-alt icon"></i>
             <% end %>
         </div>
